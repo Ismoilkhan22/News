@@ -1,0 +1,80 @@
+{% load  static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	{% include 'partials/head.html' %}
+
+</head>
+<body>
+	
+    
+	{% include 'partials/header.html' %}
+
+	
+	{% if error == 404 %}
+
+	{% include 'partials/404.html' %}
+
+	{% else %}
+
+	<a href="#" class="bigrek"></a>
+	<div class="container wrapper">
+		<div class="longrek"></div>
+		<div class="clearfix"></div>
+		
+		<ol class="breadcrumb">
+			<li><a href="{% url 'index' %}">Home</a></li>
+			<li class="active">{{ ctg.name }}</li>
+		</ol>
+		<div class="row">
+			<div class="col-md-8 col-xs-12">
+				<div class="cat_title">{{ ctg.name }}</div>
+				<div class="big_fav pop_cat">
+				<div id="bigfav" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner" role="listbox">
+						<div class="item active">
+							<img src="{{ big.img.url }}" alt="{{ big.img.url }}">
+								<a href="{% url 'view' pk=big.id %}">
+									<div class="carousel-caption">
+										<div class="caption_pos">
+											<div class="type_news">{{ big.ctg.name}}</div>
+											<div class="title">{{ big.title }}</div>
+											<span class="date">{{ big.date.date }}</span>
+											<span class="news_type"><i class="fa fa-eye"></i> {{ i.view }}</span>
+										</div>
+									</div>
+								</a>
+						</div>
+					</div>
+					<div class="control">
+			
+					</div>
+				</div>
+			</div>
+				<div class="news_box">
+					{% for i in cnew %}
+
+					<div class="cat_news">
+						<div class="cat_img"><img src="{{ i.img.url }}" alt=""></div>
+						<a href="{% url 'view' pk=i.id %}">{{ i.title  }}</a>
+						<p>  {{ i.short_desc }} </p>
+						<span class="date">{{ i.date.date }}</span>
+						<span class="news_type"><i class="fa fa-eye"></i> {{ i.view }}</span>
+					</div>	
+					{% endfor %}			
+				</div>
+			</div>
+			{%  include 'partials/yangi.html'%}
+			
+		</div>
+	</div>
+	{% endif %}
+	{% include 'partials/footer.html'%}
+	
+	
+
+
+</body>
+</html>

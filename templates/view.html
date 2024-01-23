@@ -1,0 +1,90 @@
+{% load  static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	{% include 'partials/head.html' %}
+
+</head>
+<body>
+	
+    
+	{% include 'partials/header.html' %}
+	<a href="#" class="bigrek"></a>
+	<div class="container wrapper">
+		<div class="longrek"></div>
+		<div class="clearfix"></div>
+		
+		<ol class="breadcrumb">
+			<li><a href="{%  url 'index' %}">Home</a></li>
+			<li><a href="{% url 'ctg' slug=root.ctg.slug %}">{{ root.ctg.name }}</a></li>
+			<li class="active">{{ root.title }}</li>
+		</ol>
+		<div class="row">
+			<div class="col-md-8 col-xs-12">
+				<div class="view_img"><img src="{{ root.img.url }}" alt=""></div>
+				<div class="news_box view">
+					<div class="view_title">{{ root.title }}</div>
+					<span class="date">{{ root.date }}</span>
+					<span class="news_type"><i class="fa fa-pencil"></i> {{ root.ctg  }}</span>
+					<span class="news_type"><i class="fa fa-eye"></i> {{ root.view }}</span>
+					<div class="view_desc">
+				<p> <b>{{ root.short_desc }} </b></p>
+				<p> {{ root.desc }} </p>
+			
+				<div class="nav_news">
+					<a href="#" class="prev_news text-right">
+						<i class="fa fa-angle-left"></i>
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+					</a>
+					<a href="#" class="next_news">
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+						<i class="fa fa-angle-right"></i>
+					</a>
+					<div class="clearfix"></div>
+				</div>
+				<div class="comment">
+					<div class="title">Izohlar <sup><mark> {{ cson }}</mark></sup></div>
+						<ul>
+							{% for i in comments %}
+								<li>
+									
+									<div class="com_info">
+										<div class="author">{{ i.user }}</div>
+										<p>{{ i.msg }}</p>
+										<div class="date">{{ i.date.date }}</div>
+										<hr>
+									</div>
+									
+								</li>
+							{% endfor %}
+				
+						</ul>
+						<div class="feedback">
+							<div class="title">Izoh yozish </div>
+							<form method="post"> 
+								{% csrf_token  %}
+								<input type="text" name="ism" placeholder="ism" maxlength="128" style="background-color:#484848; color:white">
+								<textarea name="msg" id="" cols="30" rows="10" placeholder="Сообщение" style="background-color:#484848;color:white"></textarea>
+								<button type="submit" class="btn add_comment">Izohni joylash</button>
+								<div class="add_info">Odamday o'ylab koment joyla ,Negativ uchasan .</div>
+							</form>
+						</div>
+			
+					</div>
+				</div>
+
+			</div>
+		</div>
+		{% include 'partials/yangi.html'%}
+
+	</div>
+	
+
+	{% include 'partials/footer.html'%}
+	
+	
+
+</body>
+</html>

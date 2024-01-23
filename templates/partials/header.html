@@ -1,0 +1,72 @@
+
+{% load static %}
+<div class="topheader">
+    <div class="container">
+        <ul class="menu">
+            <li><a href="{% url 'cnt' %}">Biz haqimizda </a></li>
+            <li><a href="{% url 'ctg' slug='ozbekiston' %}">O'zbekiston</a></li>
+            <li><a href="{% url 'cnt'%}">Contact</a></li>
+        </ul>
+        <ul class="kurs">
+            {% comment %} {% for i in val %}
+                {% if i.Ccy == 'RUB' or  i.Ccy == 'USD' or i.Ccy == 'EUR'  %}
+                    <li>1{{ i.Ccy }}={{i.Rate }}</li>
+                 {%  endif %}
+            {% endfor %}
+           {% endcomment %}
+        </ul>
+        <ul class="lang">
+            
+            <li class="active"><a href="#">Ру</a></li>
+            <li><a href="">O'z</a></li>
+            <li><a href="">Уз</a></li>
+        </ul>
+        <ul class="social">
+            <li><a href="#"><span class="fa fa-facebook-f"></span></a></li>
+            <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+            <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+            <li><a href="#"><span class="fa fa-telegram"></span></a></li>
+            <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+            <li><a href="#"><span class="fa fa-rss"></span></a></li>
+        </ul>
+    </div>
+</div>
+<nav class="navbar">
+  <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="{% static 'img./logo.png' %}" alt=""></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <i class="fa fa-close"></i>
+            </button>
+            <ul class="nav navbar-nav">
+                {% for i in ctgs %}
+                   {% if ctg == i %}
+
+                      <li class="active"><a>{{ i.name }}</a></li>
+                      
+                    {% else %}
+
+                <li><a href="{% url 'ctg' slug=i.slug %}">{{ i.name }}</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <button type="button" class="btn navbar-right search_btn hidden-xs"><i class="fa fa-search"></i></button>
+            <form action="{% url 'search' %}" method="get" id="search" class="navbar-form navbar-right search_btn_box hidden-xs">
+    <button class="btn btn-default" type="button">
+      <span><i class="fa fa-search"></i></span></button>
+    <div class="input-group">
+      <input type="text" name="search" id="searchName" class="form-control" placeholder="Qidiruv..." required="">
+      <input type="submit" hidden="">
+    </div>
+    <button type="button" class="btn  search_btn_close hidden-xs active"><i class="fa fa-close"></i></button>
+  </form>
+        </div>
+    </div>
+</nav>

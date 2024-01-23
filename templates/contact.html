@@ -1,0 +1,64 @@
+{% load  static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	{% include 'partials/head.html' %}
+
+</head>
+<body>
+	
+    
+	{% include 'partials/header.html' %}
+	<a href="#" class="bigrek"></a>
+	<div class="container wrapper">
+		<div class="longrek"></div>
+		<div class="clearfix"></div>
+		
+		<ol class="breadcrumb">
+			<li><a href="{% url 'index' %}">Home</a></li>
+			<li class="active">Kontact</li>
+		</ol>
+		<div class="row">
+			<div class="col-md-5 col-xs-12">
+				<div class="cat_title">Bog'lanish</div>
+				<div class="con_info">Yangiliklar uchun muljallangan kun.uz va daryo.uz va qalampir.uz larni sindirib qoyuvchi yagona sayt bizning saytni afzallik jihati shundaki bu yangiliklarni shu saytni ozidan chapadi</div>
+				<ul class="contact">
+					<li><i class="fa fa-map-marker"></i> Toshkent,Fintech Hub</li>
+					<li><i class="fa fa-handshake-o"></i> +998(77) 666-99-66</li>
+					<li><i class="fa fa-mobile"></i> +998 93-038-04-42</li>
+					<li><i class="fa fa-envelope"></i> eshmatbuildings@gmail.com</li>
+				</ul>
+				<div class="feedback">
+					<div class="title">Tezkor Bog'lanish </div>
+					{% if success %}
+					<h3 style="color:green"> Siz yuborgan ma'lumotlar adminga yuborildi iltimos Kuting . </h3>
+					{% endif %}
+					<form method="post">
+						{% csrf_token %}
+						<input type="text" name="ism" placeholder="Ismingiz nedur?" maxlength="128">
+						<input type="text" name="phone" placeholder="Telingizni etvoring" maxlength="128">
+						<textarea name="xabar" id="" cols="30" rows="10" placeholder=" Muommo nima"></textarea>
+						<button class="btn submit">Yuborish</button>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-7 col-xs-12">
+				<div class="con_img">
+					<img src="img/contact.jpg" alt="">
+				</div>
+				<div class="map"></div>
+			</div>
+		</div>
+		<div class="foot_rek">
+			<img src="img/foootrek.jpg" alt="">
+		</div>
+	</div>
+
+	{% include 'partials/footer.html'%}
+	
+
+
+</body>
+</html>

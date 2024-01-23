@@ -1,0 +1,54 @@
+{% load  static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	{% include 'partials/head.html' %}
+
+</head>
+<body>
+	
+    
+	{% include 'partials/header.html' %}
+	<a href="#" class="bigrek"></a>
+	<div class="container wrapper">
+		<div class="longrek"></div>
+		<div class="clearfix"></div>
+		
+		<ol class="breadcrumb">
+			<li><a href="{% url 'index' %}">Home</a></li>
+			<li class="active"> Qidiruv </li>
+		</ol>
+		<div class="row">
+			<div class="col-md-8 col-xs-12">
+				<div class="cat_title"> Umumiy holatda '''{{ key }}''' ga oid {{ len }} ta malumot topldi </div>
+				<div class="search_box">
+					<form>
+						<div class="input-group">
+							<input type="text" name="search" placeholder="Qidirish....">
+							<button class="btn submit"><i class="fa fa-search"></i></button>
+						</div>
+					</form>
+				</div>
+				<div class="news_box">
+					{% for i in natijalar %}
+					<div class="cat_news">
+						<div class="cat_img"><img src="{{ sql_img_url }} {{ i.img }}" alt=""></div>
+						<a href="{% url 'view' pk=i.id %}">{{ i.title }}]</a>
+						<p>{{ i.short_desc }}</p>
+						<span class="date">{{ i.date }}</span>
+						<span class="news_type"><i class="fa fa-eye"></i> {{ i.view }}</span>
+					</div>	
+					{% endfor %}										
+				</div>
+			</div>
+			{% include 'partials/yangi.html'%}
+		</div>
+	</div>
+	
+	{% include 'partials/footer.html'%}
+	
+
+</body>
+</html>
